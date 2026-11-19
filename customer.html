@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaaniLink - Customer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Tab icon (favicon): SVG for modern browsers, PNG/ICO as backup -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0f3d47" />
+</head>
+<body>
+  <header>
+    <h1><img class="logo-mark" src="images/logo.svg" alt="PaaniLink logo" /> PaaniLink <span class="role-tag">Customer</span></h1>
+    <div class="right">
+      <span id="userName"></span>
+      <button id="logoutBtn" class="light small">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <h2>Customer Dashboard</h2>
+      <p>Book tankers, track your deliveries and manage your subsidy status.</p>
+    </div>
+
+    <!-- Tabs: each button opens one part of the page -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="t-book">🚚 Book a Tanker</button>
+      <button class="tab" data-tab="t-bookings">📋 My Bookings <span class="count" id="cBookings"></span></button>
+      <button class="tab" data-tab="t-subsidy">🤝 Subsidy</button>
+    </nav>
+
+    <div class="tab-panel active" id="t-book">
+      <p class="hint">Choose the hydrant, tanker size and date, then press <b>Book Now</b>. The price is shown before you book.</p>
+      <section class="card">
+        <h2>Book a Tanker</h2>
+        <form id="bookForm" novalidate>
+          <div class="field">
+            <label for="hydrant">Hydrant</label>
+            <select id="hydrant"><option value="">-- Select hydrant --</option></select>
+            <span class="err" id="hydrantErr"></span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="size">Tanker Size</label>
+              <select id="size"><option value="">-- Select size --</option></select>
+              <span class="err" id="sizeErr"></span>
+            </div>
+            <div class="field">
+              <label for="type">Booking Type</label>
+              <select id="type"><option value="commercial">Commercial</option></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="date">Delivery Date</label>
+            <input id="date" type="date" />
+            <span class="err" id="dateErr"></span>
+          </div>
+          <div class="field">
+            <label for="address">Delivery Address</label>
+            <textarea id="address" rows="2"></textarea>
+            <span class="err" id="addressErr"></span>
+          </div>
+          <p><b>Price: Rs <span id="price">0</span></b></p>
+          <button type="submit">Book Now</button>
+          <div id="bookMsg" class="msg"></div>
+        </form>
+      </section>
+    </div>
+
+    <div class="tab-panel" id="t-bookings">
+      <p class="hint">Here you can see every booking and its status. Press <b>Confirm</b> when the water arrives.</p>
+      <section class="card">
+        <h2>My Bookings</h2>
+        <div class="filters">
+          <select id="filterStatus" aria-label="Filter by status">
+            <option value="">All statuses</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Date</th><th>Hydrant</th><th>Size</th><th>Type</th>
+                <th>Price</th><th>Tanker</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookingRows"></tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px"><b>Total Bill (delivered/confirmed): Rs <span id="totalBill">0</span></b></p>
+        <div id="listMsg" class="msg"></div>
+      </section>
+    </div>
+
+    <div class="tab-panel" id="t-subsidy">
+      <p class="hint">Low income households, hospitals and mosques can apply for a cheaper (subsidised) rate.</p>
+      <section class="card">
+        <h2>Subsidy Status</h2>
+        <div id="subsidyBox"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>PaaniLink &middot; Water Tanker Booking and Dispatch System &middot; Web Engineering Project</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/customer.js"></script>
+</body>
+</html>

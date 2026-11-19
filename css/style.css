@@ -1,0 +1,390 @@
+/* =========================================================
+   style.css - PaaniLink design
+   One stylesheet for every page.
+   Layout uses CSS Grid and Flexbox; a media query makes it
+   work on phones (tested at 360px width).
+   ========================================================= */
+
+/* ---------- 1. Colour and size variables ----------
+   Defined once here and reused everywhere with var(--name).
+   To change the theme colour, change it in one place only. */
+:root {
+  --primary: #2c5282;        /* navy blue (buttons, links) */
+  --primary-dark: #1e3a5f;   /* dark navy (header, headings) */
+  --accent: #90cdf4;         /* light blue (small highlights) */
+  --bg: #f5f7fa;             /* light grey page background */
+  --surface: #ffffff;        /* cards */
+  --border: #e2e8f0;         /* thin lines */
+  --text: #1f2937;           /* normal text */
+  --muted: #6b7280;          /* secondary text */
+  --success: #15803d;
+  --danger: #b91c1c;
+  --radius: 8px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* keeps the footer at the bottom */
+}
+
+a { color: var(--primary); }
+
+/* ---------- 3. Top navigation bar ---------- */
+header {
+  background: var(--primary-dark);
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+header h1 {
+  font-size: 1.15rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo image (images/logo.svg) */
+.logo-mark { width: 34px; height: 34px; }
+
+/* Small grey label showing which panel is open */
+.role-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  background: var(--accent);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+header .right { display: flex; gap: 12px; align-items: center; color: #cbe6e3; font-size: 0.9rem; }
+
+/* ---------- 4. Page layout ---------- */
+main {
+  width: 100%;
+  max-width: 1150px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: grid;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Title block at the top of each dashboard */
+.page-head h2 { font-size: 1.4rem; color: var(--primary-dark); }
+.page-head p { color: var(--muted); font-size: 0.92rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  border-left: 4px solid var(--accent);
+  padding-left: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ---------- 5. Forms ---------- */
+.field { margin-bottom: 12px; }
+
+label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 5px; color: #374151; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+}
+
+/* Blue outline when a field is selected */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18);
+}
+
+input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); }
+.err { color: var(--danger); font-size: 0.8rem; min-height: 1em; display: block; margin-top: 3px; }
+
+/* ---------- 6. Buttons ---------- */
+button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+button:hover { background: var(--primary-dark); }
+button.success { background: var(--success); }
+button.danger { background: var(--danger); }
+button.success:hover, button.danger:hover { opacity: 0.9; }
+button.light { background: var(--bg); color: var(--primary); border: 1px solid var(--border); }
+button.light:hover { background: #e8edf3; }
+button.small { padding: 5px 12px; font-size: 0.8rem; margin: 2px; }
+button.full { width: 100%; padding: 11px; }
+
+/* ---------- 7. Tables ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th {
+  text-align: left;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody tr:hover { background: #f8fafc; }
+td select { width: auto; margin: 2px; padding: 5px; font-size: 0.85rem; }
+
+/* ---------- 8. Status badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #e5e7eb;
+  color: #374151;
+  white-space: nowrap;
+}
+.badge.pending-approval, .badge.pending, .badge.open { background: #fef3c7; color: #92400e; }
+.badge.approved, .badge.confirmed, .badge.resolved   { background: #dcfce7; color: #166534; }
+.badge.assigned, .badge.filled, .badge.dispatched, .badge.arrived { background: #dbeafe; color: #1e40af; }
+.badge.delivered { background: #ccfbf1; color: #115e59; }
+.badge.rejected, .badge.cancelled, .badge.failed, .badge.disputed { background: #fee2e2; color: #991b1b; }
+
+/* ---------- 9. Messages ---------- */
+.msg { display: none; padding: 10px 14px; border-radius: 6px; margin-top: 10px; font-size: 0.9rem; border-left: 4px solid; }
+.msg.success { display: block; background: #f0fdf4; color: var(--success); }
+.msg.error { display: block; background: #fef2f2; color: var(--danger); }
+
+/* ---------- 10. Dashboard numbers ---------- */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.stat b { display: block; font-size: 1.5rem; color: var(--text); }
+
+/* ---------- 11. Login and register pages ----------
+   Two columns: an information panel with a picture on the
+   left, and the form on the right. */
+.auth-page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--bg);
+}
+.auth-info {
+  background: linear-gradient(150deg, #0b2a33 0%, var(--primary-dark) 45%, var(--primary) 100%);
+  color: #fff;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+.auth-info h1 { font-size: 2rem; display: flex; align-items: center; gap: 12px; }
+.auth-info .logo-mark { width: 48px; height: 48px; }
+.auth-info .tagline { font-size: 1.25rem; font-weight: 600; color: var(--accent); }
+.auth-info p { opacity: 0.9; max-width: 460px; }
+.auth-info .hero { width: 100%; max-width: 480px; }
+.auth-info ul { list-style: none; display: grid; gap: 8px; }
+.auth-info li::before { content: "✓  "; color: var(--accent); font-weight: 700; }
+
+/* Three small numbers under the picture */
+.facts { display: flex; gap: 28px; margin-top: 6px; }
+.facts b { display: block; font-size: 1.4rem; color: var(--accent); }
+.facts span { font-size: 0.8rem; opacity: 0.85; }
+
+.auth-form { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+.auth-box { width: 100%; max-width: 400px; border-top: 4px solid var(--accent); }
+.auth-box h2 { border: none; font-size: 1.4rem; margin-bottom: 4px; padding: 0; }
+.auth-box .muted { margin-bottom: 18px; }
+
+/* ---------- 12. Small helpers ---------- */
+.muted { color: var(--muted); font-size: 0.85rem; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.filters > * { flex: 1 1 180px; }
+
+/* ---------- 13. Driver trip cards (large buttons for phones) ---------- */
+.trip { border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; }
+.trip p { margin: 4px 0; }
+.trip .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.trip .actions button { flex: 1 1 120px; padding: 14px; font-size: 1rem; }
+
+/* ---------- 14. Phones and small screens (up to 700px) ---------- */
+@media (max-width: 700px) {
+  header { padding: 10px 14px; }
+  main { padding: 0 12px; margin: 16px auto; }
+
+  /* Login page: hide the info panel, show only the form */
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-info { display: none; }
+
+  /* Tables turn into stacked cards: each cell shows its column
+     name (from the data-label attribute) on the left */
+  table thead { display: none; }
+  table tr { display: block; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; padding: 6px; }
+  table td { display: flex; justify-content: space-between; gap: 10px; border: none; padding: 6px; }
+  table td::before { content: attr(data-label); font-weight: 600; color: var(--muted); }
+}
+
+/* ---------- 15. Phase 2: error toast and page buttons ---------- */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--danger);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 100;
+  max-width: 90%;
+}
+.toast.show { display: block; }
+
+.pager { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 14px; }
+.pager button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- 16. Tabs (one part of the page at a time) ---------- */
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;           /* on phones the tabs scroll sideways */
+  padding-bottom: 4px;
+}
+.tab {
+  background: var(--surface);
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  border-radius: 10px;
+}
+.tab:hover { background: #e6f4f2; }
+.tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.tab .count:not(:empty) {
+  background: var(--accent);
+  color: var(--primary-dark);
+  border-radius: 20px;
+  padding: 0 8px;
+  margin-left: 6px;
+  font-size: 0.8rem;
+}
+.tab-panel { display: none; gap: 20px; }
+.tab-panel.active { display: grid; }
+
+/* Simple help line at the top of each tab */
+.hint {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #78350f;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+/* Tick boxes (admin: hydrants of a zone) */
+.checks { display: flex; flex-wrap: wrap; gap: 10px; }
+.check { display: flex; align-items: center; gap: 6px; font-weight: 400; }
+.check input { width: auto; }
+
+/* Bigger buttons on phones, easier to tap */
+@media (max-width: 700px) {
+  button { padding: 11px 16px; }
+  button.small { padding: 8px 12px; font-size: 0.85rem; }
+  .tab { padding: 10px 14px; font-size: 0.9rem; }
+}
+
+/* Hides the Cancel button until the admin is editing something */
+.hidden { display: none !important; }
+
+/* ---------- Calm navy look ----------
+   Header has a soft navy gradient, tabs are underlined,
+   number boxes have a navy line on top, status labels are soft pills. */
+:root { --header-grad: linear-gradient(120deg, #1e3a5f, #2c5282); --tint: #ebf2fb; }
+
+header, footer { background: var(--header-grad); }
+.role-tag { background: rgba(255, 255, 255, 0.15); color: #fff; }
+
+.card { border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); border-radius: 10px; }
+
+/* Tabs: plain text with a line under the open one */
+.tabs { border-bottom: 1px solid var(--border); gap: 4px; }
+.tab { background: none; border: none; border-bottom: 3px solid transparent; border-radius: 0; color: var(--muted); }
+.tab:hover { background: none; color: var(--primary); }
+.tab.active { background: none; color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+.tab .count:not(:empty) { background: var(--tint); color: var(--primary); }
+
+/* Report number boxes */
+.stat { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--primary); }
+.stat b { color: var(--text); }
+
+.hint { background: var(--tint); border-left: 4px solid var(--primary); }
+.badge { border-radius: 20px; }
+.auth-info { background: var(--header-grad); }
+.auth-box { border-top-color: var(--primary); }
+
+/* Eye button inside password boxes (see "Show / hide password" in js/common.js) */
+.pass-wrap { position: relative; }
+.pass-wrap input { width: 100%; padding-right: 40px; }
+.eye-btn, .eye-btn:hover {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  background: none; box-shadow: none; border: none; padding: 4px 8px; font-size: 13px; font-weight: 600; color: var(--primary); cursor: pointer;
+}

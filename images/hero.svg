@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300">
+  <!-- Login page illustration: water tanker in front of a city skyline -->
+  <defs>
+    <linearGradient id="tank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sun -->
+  <circle cx="420" cy="70" r="38" fill="#fbbf24" opacity="0.9"/>
+
+  <!-- city skyline -->
+  <g fill="#ffffff" opacity="0.12">
+    <rect x="20" y="110" width="50" height="120"/>
+    <rect x="80" y="80" width="40" height="150"/>
+    <rect x="130" y="125" width="60" height="105"/>
+    <rect x="200" y="95" width="35" height="135"/>
+    <rect x="245" y="130" width="55" height="100"/>
+    <rect x="310" y="105" width="45" height="125"/>
+    <rect x="365" y="140" width="60" height="90"/>
+    <rect x="435" y="115" width="45" height="115"/>
+  </g>
+
+  <!-- road -->
+  <rect x="0" y="230" width="520" height="70" fill="#0b3440" opacity="0.55"/>
+  <g fill="#fbbf24" opacity="0.8">
+    <rect x="20" y="262" width="40" height="5" rx="2"/>
+    <rect x="110" y="262" width="40" height="5" rx="2"/>
+    <rect x="200" y="262" width="40" height="5" rx="2"/>
+    <rect x="290" y="262" width="40" height="5" rx="2"/>
+    <rect x="380" y="262" width="40" height="5" rx="2"/>
+    <rect x="470" y="262" width="40" height="5" rx="2"/>
+  </g>
+
+  <!-- tanker truck -->
+  <g transform="translate(110 140)">
+    <rect x="0" y="70" width="290" height="16" rx="4" fill="#1f2937"/>               <!-- chassis -->
+    <rect x="10" y="10" width="200" height="66" rx="33" fill="url(#tank)"/>          <!-- water tank -->
+    <rect x="30" y="30" width="160" height="6" rx="3" fill="#ffffff" opacity="0.5"/> <!-- tank shine -->
+    <text x="110" y="58" font-family="Segoe UI, Arial" font-size="16" font-weight="700"
+          fill="#0f4c5c" text-anchor="middle">PAANILINK</text>
+    <path d="M220 30 h40 l26 28 v24 h-66 z" fill="#f59e0b"/>                         <!-- cabin -->
+    <path d="M232 38 h26 l16 18 h-42 z" fill="#e0f2fe"/>                              <!-- window -->
+    <circle cx="55" cy="90" r="17" fill="#111827"/><circle cx="55" cy="90" r="7" fill="#9ca3af"/>
+    <circle cx="165" cy="90" r="17" fill="#111827"/><circle cx="165" cy="90" r="7" fill="#9ca3af"/>
+    <circle cx="255" cy="90" r="17" fill="#111827"/><circle cx="255" cy="90" r="7" fill="#9ca3af"/>
+  </g>
+
+  <!-- water drops -->
+  <g fill="#5eead4">
+    <path d="M60 60 c0 0 -10 13 -10 19 a10 10 0 0 0 20 0 c0 -6 -10 -19 -10 -19z"/>
+    <path d="M330 30 c0 0 -7 9 -7 13 a7 7 0 0 0 14 0 c0 -4 -7 -13 -7 -13z" opacity="0.8"/>
+    <path d="M490 170 c0 0 -6 8 -6 12 a6 6 0 0 0 12 0 c0 -4 -6 -12 -6 -12z" opacity="0.7"/>
+  </g>
+</svg>

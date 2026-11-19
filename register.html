@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaaniLink - Register</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Tab icon (favicon): SVG for modern browsers, PNG/ICO as backup -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0f3d47" />
+</head>
+<body>
+  <div class="auth-page">
+    <!-- Left: information about the system -->
+    <section class="auth-info">
+      <h1><img class="logo-mark" src="images/logo.svg" alt="PaaniLink logo" /> PaaniLink</h1>
+      <div class="tagline">Join PaaniLink in a minute.</div>
+      <p>Create a customer account to book water tankers for your home or institution.</p>
+      <ul>
+        <li>Register with your CNIC and phone number</li>
+        <li>Low income households, hospitals and mosques can apply for subsidy</li>
+        <li>See your bookings, tanker status and bill in one place</li>
+      </ul>
+      <img class="hero" src="images/hero.svg" alt="Water tanker delivering water in the city" />
+      <div class="facts">
+        <div><b>3</b><span>Tanker sizes</span></div>
+        <div><b>5</b><span>User roles</span></div>
+        <div><b>100%</b><span>Trackable deliveries</span></div>
+      </div>
+    </section>
+
+    <!-- Right: registration form -->
+    <section class="auth-form">
+      <div class="card auth-box">
+        <h2>Create account</h2>
+        <p class="muted">Customer registration</p>
+
+        <form id="regForm" novalidate>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" />
+            <span class="err" id="nameErr"></span>
+          </div>
+    
+          <div class="field">
+            <label for="cnic">CNIC</label>
+            <input id="cnic" placeholder="12345-1234567-1" />
+            <span class="err" id="cnicErr"></span>
+          </div>
+    
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" placeholder="03XXXXXXXXX" />
+            <span class="err" id="phoneErr"></span>
+          </div>
+    
+          <div class="field">
+            <label for="zone">Zone</label>
+            <select id="zone">
+              <option value="">-- Select zone --</option>
+            </select>
+            <span class="err" id="zoneErr"></span>
+          </div>
+    
+          <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address" rows="2"></textarea>
+            <span class="err" id="addressErr"></span>
+          </div>
+    
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" />
+            <span class="err" id="passwordErr"></span>
+          </div>
+    
+          <button type="submit" class="full">Register</button>
+          <div id="msg" class="msg"></div>
+        </form>
+
+        <p class="muted" style="margin-top:16px; margin-bottom:0">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    // Load zones from the API into the dropdown (nothing hardcoded)
+    async function loadZones() {
+      const zones = await api.get("/zones");
+      document.getElementById("zone").innerHTML += zones
+        .map((z) => `<option value="${z.id}">${esc(z.name)}</option>`)
+        .join("");
+    }
+
+    document.getElementById("regForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // 1. Validate every field
+      const isValid = validateForm({
+        name: ["required"],
+        cnic: ["required", "cnic"],
+        phone: ["required", "phone"],
+        zone: ["required"],
+        address: ["required"],
+        password: ["required", "password"],
+      });
+      if (!isValid) return;
+
+      const value = (id) => document.getElementById(id).value.trim();
+
+      try {
+        // 2. The server checks the formats, refuses a duplicate phone or CNIC,
+        //    saves the password as a hash and creates the customer
+        await api.post("/auth/register", {
+          name: value("name"),
+          cnic: value("cnic"),
+          phone: value("phone"),
+          zoneId: value("zone"),
+          address: value("address"),
+          password: value("password"),
+        });
+
+        // 3. Go to the login page
+        showMsg("msg", "Registration successful! Redirecting to login...");
+        setTimeout(() => (window.location.href = "login.html"), 1500);
+      } catch (err) {
+        showMsg("msg", err.message, "error"); // e.g. "This phone number is already registered"
+      }
+    });
+
+    loadZones();
+  </script>
+</body>
+</html>

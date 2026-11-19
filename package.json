@@ -1,0 +1,11 @@
+{
+  "name": "paanilink",
+  "version": "1.0.0",
+  "description": "PaaniLink Water Tanker Booking and Dispatch System - Phase 1 (frontend with mock API)",
+  "scripts": {
+    "start": "node mock-server.js"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaaniLink - Water Tanker Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <!-- Tab icon (favicon): SVG for modern browsers, PNG/ICO as backup -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0f3d47" />
+</head>
+<body class="home">
+
+  <!-- ===== Navigation bar ===== -->
+  <nav class="topnav">
+    <a href="#home" class="brand">
+      <img class="logo-mark" src="images/logo.svg" alt="PaaniLink logo" /> PaaniLink
+    </a>
+
+    <!-- Menu button: only visible on phones -->
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html" class="nav-btn">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- ===== Hero (first screen) ===== -->
+  <section class="hero-section" id="home">
+    <!-- Background animation (see "Simple background animation" in css/home.css) -->
+    <div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="wave"></div>
+    <div class="hero-content">
+      <p class="eyebrow">City Water Board &middot; Official Booking Portal</p>
+      <h1>Safe Water Tankers,<br />Booked in Minutes</h1>
+      <p class="hero-text">
+        Book a 1,000, 3,000 or 6,000 gallon tanker from your nearest authorised hydrant,
+        and follow it from approval to your doorstep.
+      </p>
+      <div class="hero-buttons">
+        <a href="register.html" class="btn btn-accent">Book a Tanker</a>
+        <a href="login.html" class="btn btn-outline">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Short numbers strip ===== -->
+  <section class="strip">
+    <div><b>3</b><span>Tanker sizes</span></div>
+    <div><b>5</b><span>User roles</span></div>
+    <div><b>Subsidy</b><span>For low income homes</span></div>
+    <div><b>100%</b><span>Trackable deliveries</span></div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section" id="about">
+    <h2 class="section-title">About PaaniLink</h2>
+    <p class="section-text">
+      Many neighbourhoods get piped water only a few hours a week, so families depend on tankers
+      filled at City Water Board hydrants. PaaniLink replaces phone bookings with one online system,
+      so a tanker, a driver or hydrant water is never promised twice, subsidy reaches the right people,
+      and every delivery can be traced from booking to confirmation.
+    </p>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="section alt" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="cards-3">
+      <div class="service">
+        <div class="service-icon">🚚</div>
+        <h3>Commercial Delivery</h3>
+        <p>Book any tanker size at the full rate. No approval needed, it goes straight to dispatch.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">🤝</div>
+        <h3>Subsidised Water</h3>
+        <p>Low income households, hospitals and mosques get tankers at a reduced rate after officer approval.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">📍</div>
+        <h3>Delivery Tracking</h3>
+        <p>See every step: approved, assigned, dispatched, arrived and delivered, with the tanker number.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="section" id="how">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step"><span>1</span><h3>Book</h3><p>Choose hydrant, size and date.</p></div>
+      <div class="step"><span>2</span><h3>Approve</h3><p>Subsidised bookings are checked by a Zone Officer.</p></div>
+      <div class="step"><span>3</span><h3>Dispatch</h3><p>The hydrant operator assigns a tanker and driver.</p></div>
+      <div class="step"><span>4</span><h3>Deliver</h3><p>The driver delivers and you confirm the delivery.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Call to action ===== -->
+  <section class="cta">
+    <h2>Need water today?</h2>
+    <p>Create your account and book your first tanker.</p>
+    <a href="register.html" class="btn btn-accent">Create Account</a>
+  </section>
+
+  <!-- ===== Contact / footer ===== -->
+  <footer class="home-footer" id="contact">
+    <div>
+      <h3><img class="logo-mark" src="images/logo.svg" alt="" /> PaaniLink</h3>
+      <p>Water tanker booking and dispatch system for the City Water Board.</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>City Water Board, Head Office</p>
+      <p>Open daily, 6:00 AM – 10:00 PM</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p><a href="login.html">Sign In</a></p>
+      <p><a href="register.html">Register</a></p>
+    </div>
+    <p class="copyright">PaaniLink &middot; Web Engineering Project</p>
+  </footer>
+
+  <script>
+    // Phone menu: show or hide the links when the ☰ button is pressed
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("open");
+    });
+  </script>
+</body>
+</html>

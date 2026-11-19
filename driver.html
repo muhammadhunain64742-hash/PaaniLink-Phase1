@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaaniLink - Driver</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Tab icon (favicon): SVG for modern browsers, PNG/ICO as backup -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0f3d47" />
+</head>
+<body>
+  <header>
+    <h1><img class="logo-mark" src="images/logo.svg" alt="PaaniLink logo" /> PaaniLink <span class="role-tag">Driver</span></h1>
+    <div class="right">
+      <span id="userName"></span>
+      <button id="logoutBtn" class="light small">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <h2>My Trips</h2>
+      <p>Trips assigned to you. Update the status when you arrive and deliver.</p>
+    </div>
+
+    <div id="msg" class="msg"></div>
+    <section class="card">
+      <h2>Assigned Trips</h2>
+      <div class="filters">
+        <select id="fShow" aria-label="Which trips to show">
+          <option value="active">Active trips</option>
+          <option value="all">All trips</option>
+        </select>
+      </div>
+      <div id="trips"></div>
+    </section>
+  </main>
+
+  <footer>PaaniLink &middot; Water Tanker Booking and Dispatch System &middot; Web Engineering Project</footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    // Driver: sees only trips assigned to them and marks Arrived / Delivered / Failed.
+    const user = requireRole("driver");
+    const ACTIVE = ["Assigned", "Filled", "Dispatched", "Arrived"];
+    let tankers = [];
+
+    async function load() {
+      const [trips, allTankers] = await Promise.all([
+        api.get(`/bookings?driverId=${user.id}&_sort=date&_order=asc`),
+        api.get("/tankers"),
+      ]);
+      tankers = allTankers;
+
+      const show = document.getElementById("fShow").value;
+      const list = show === "active" ? trips.filter((b) => ACTIVE.includes(b.status)) : trips;
+      const tankerNumber = (id) => lookup(tankers, id, "number");
+
+      document.getElementById("trips").innerHTML = list.length ? list.map((b) => `
+        <div class="trip">
+          <p><b>Trip #${esc(b.id)}</b> ${badge(b.status)}</p>
+          <p>📅 ${b.date} · ${b.size} gallons · Tanker ${esc(tankerNumber(b.tankerId))}</p>
+          <p>📍 ${esc(b.address)}</p>
+          ${b.failReason ? `<p>Reason: ${esc(b.failReason)}</p>` : ""}
+          <div class="actions">${actionsFor(b)}</div>
+        </div>`).join("") : "<p>No trips to show</p>";
+    }
+
+    function actionsFor(b) {
+      if (b.status === "Dispatched") {
+        return `<button onclick="update('${b.id}', 'Arrived')">Arrived</button>
+                <button class="danger" onclick="fail('${b.id}')">Failed</button>`;
+      }
+      if (b.status === "Arrived") {
+        return `<button class="success" onclick="update('${b.id}', 'Delivered')">Delivered</button>
+                <button class="danger" onclick="fail('${b.id}')">Failed</button>`;
+      }
+      if (b.status === "Assigned" || b.status === "Filled") {
+        return `<p class="muted">Waiting for the tanker to leave the hydrant</p>`;
+      }
+      return "";
+    }
+
+    async function update(id, status, extra = {}) {
+      // Data to save: the new status, the time, and any extra fields (e.g. failReason)
+      const changes = { status: status, updatedAt: new Date().toISOString() };
+      if (extra.failReason) changes.failReason = extra.failReason;
+
+      await api.patch(`/bookings/${id}`, changes);
+      showMsg("msg", `Trip #${id} marked as ${status}`);
+      load();
+    }
+
+    function fail(id) {
+      const reason = prompt("Reason for failure (e.g. house locked, road blocked):");
+      if (!reason || !reason.trim()) {
+        showMsg("msg", "A reason is required to mark a trip as Failed", "error");
+        return;
+      }
+      update(id, "Failed", { failReason: reason.trim() });
+    }
+
+    document.getElementById("fShow").addEventListener("change", load);
+    load();
+  </script>
+</body>
+</html>

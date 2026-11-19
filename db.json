@@ -1,0 +1,352 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Hunain",
+      "phone": "03000000001",
+      "cnic": "35202-0000000-1",
+      "password": "admin123",
+      "role": "admin",
+      "zoneId": null,
+      "hydrantId": null,
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "2",
+      "name": "Imran Qureshi",
+      "phone": "03124587631",
+      "cnic": "42101-4587631-3",
+      "password": "1234",
+      "role": "officer",
+      "zoneId": "1",
+      "hydrantId": null,
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "3",
+      "name": "Saima Baig",
+      "phone": "03332190458",
+      "cnic": "42201-2190458-8",
+      "password": "1234",
+      "role": "officer",
+      "zoneId": "2",
+      "hydrantId": null,
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "4",
+      "name": "Asif Mehmood",
+      "phone": "03017745290",
+      "cnic": "42101-7745290-5",
+      "password": "1234",
+      "role": "operator",
+      "zoneId": null,
+      "hydrantId": "1",
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "5",
+      "name": "Tariq Javed",
+      "phone": "03458812036",
+      "cnic": "42301-8812036-1",
+      "password": "1234",
+      "role": "operator",
+      "zoneId": null,
+      "hydrantId": "2",
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "6",
+      "name": "Rashid Khan",
+      "phone": "03216634907",
+      "cnic": "42101-6634907-9",
+      "password": "1234",
+      "role": "driver",
+      "zoneId": null,
+      "hydrantId": "1",
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "7",
+      "name": "Naveed Akhtar",
+      "phone": "03007219584",
+      "cnic": "42201-7219584-3",
+      "password": "1234",
+      "role": "driver",
+      "zoneId": null,
+      "hydrantId": "2",
+      "address": "",
+      "subsidised": false,
+      "monthlyLimit": null
+    },
+    {
+      "id": "8",
+      "name": "Ayesha Siddiqui",
+      "phone": "03152238764",
+      "cnic": "42101-2238764-2",
+      "password": "1234",
+      "role": "customer",
+      "zoneId": "1",
+      "hydrantId": null,
+      "address": "House B-17, Block 5, North Nazimabad",
+      "subsidised": true,
+      "monthlyLimit": 4
+    },
+    {
+      "id": "9",
+      "name": "Bilal Ahmed",
+      "phone": "03349061275",
+      "cnic": "42201-9061275-7",
+      "password": "1234",
+      "role": "customer",
+      "zoneId": "2",
+      "hydrantId": null,
+      "address": "Flat 302, Gulshan-e-Iqbal Block 13-D",
+      "subsidised": false,
+      "monthlyLimit": null
+    }
+  ],
+  "zones": [
+    {
+      "id": "1",
+      "name": "North Nazimabad",
+      "hydrantIds": [
+        "1"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Gulshan-e-Iqbal",
+      "hydrantIds": [
+        "2"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Gulberg",
+      "hydrantIds": [
+        "1",
+        "2"
+      ]
+    }
+  ],
+  "hydrants": [
+    {
+      "id": "1",
+      "name": "Sakhi Hassan Hydrant",
+      "dailyQuota": 60000,
+      "openTime": "06:00",
+      "closeTime": "22:00",
+      "available": true
+    },
+    {
+      "id": "2",
+      "name": "NIPA Hydrant",
+      "dailyQuota": 45000,
+      "openTime": "07:00",
+      "closeTime": "21:00",
+      "available": true
+    }
+  ],
+  "tankers": [
+    {
+      "id": "1",
+      "number": "TK-101",
+      "size": 3000,
+      "hydrantId": "1",
+      "available": true
+    },
+    {
+      "id": "2",
+      "number": "TK-102",
+      "size": 6000,
+      "hydrantId": "1",
+      "available": true
+    },
+    {
+      "id": "3",
+      "number": "TK-201",
+      "size": 1000,
+      "hydrantId": "2",
+      "available": true
+    }
+  ],
+  "rates": [
+    {
+      "id": "1",
+      "size": 1000,
+      "commercial": 2500,
+      "subsidised": 800
+    },
+    {
+      "id": "2",
+      "size": 3000,
+      "commercial": 6000,
+      "subsidised": 2000
+    },
+    {
+      "id": "3",
+      "size": 6000,
+      "commercial": 11000,
+      "subsidised": 3500
+    }
+  ],
+  "bookings": [
+    {
+      "id": "1",
+      "customerId": "9",
+      "customerName": "Bilal Ahmed",
+      "zoneId": "2",
+      "zoneName": "Gulshan-e-Iqbal",
+      "hydrantId": "2",
+      "hydrantName": "NIPA Hydrant",
+      "type": "commercial",
+      "size": 1000,
+      "date": "2026-11-15",
+      "address": "Flat 302, Gulshan-e-Iqbal Block 13-D",
+      "price": 2500,
+      "status": "Delivered",
+      "tankerId": "3",
+      "tankerNumber": "TK-201",
+      "driverId": "7",
+      "driverName": "Naveed Akhtar",
+      "failReason": null,
+      "createdAt": "2026-11-14T11:20:00.000Z",
+      "updatedAt": "2026-11-14T11:20:00.000Z"
+    },
+    {
+      "id": "2",
+      "customerId": "8",
+      "customerName": "Ayesha Siddiqui",
+      "zoneId": "1",
+      "zoneName": "North Nazimabad",
+      "hydrantId": "1",
+      "hydrantName": "Sakhi Hassan Hydrant",
+      "type": "commercial",
+      "size": 6000,
+      "date": "2026-11-22",
+      "address": "House B-17, Block 5, North Nazimabad",
+      "price": 11000,
+      "status": "Assigned",
+      "tankerId": "2",
+      "tankerNumber": "TK-102",
+      "driverId": "6",
+      "driverName": "Rashid Khan",
+      "failReason": null,
+      "createdAt": "2026-11-18T16:05:00.000Z",
+      "updatedAt": "2026-11-18T16:05:00.000Z"
+    },
+    {
+      "id": "3",
+      "customerId": "8",
+      "customerName": "Ayesha Siddiqui",
+      "zoneId": "1",
+      "zoneName": "North Nazimabad",
+      "hydrantId": "1",
+      "hydrantName": "Sakhi Hassan Hydrant",
+      "type": "subsidised",
+      "size": 3000,
+      "date": "2026-11-24",
+      "address": "House B-17, Block 5, North Nazimabad",
+      "price": 2000,
+      "status": "Pending Approval",
+      "tankerId": null,
+      "tankerNumber": null,
+      "driverId": null,
+      "driverName": null,
+      "failReason": null,
+      "createdAt": "2026-11-19T08:40:00.000Z",
+      "updatedAt": "2026-11-19T08:40:00.000Z"
+    }
+  ],
+  "bookingHistory": [
+    {
+      "id": "1",
+      "bookingId": "1",
+      "status": "Approved",
+      "byName": "Bilal Ahmed",
+      "at": "2026-11-14T11:20:00.000Z"
+    },
+    {
+      "id": "2",
+      "bookingId": "1",
+      "status": "Assigned",
+      "byName": "Tariq Javed",
+      "at": "2026-11-15T07:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "bookingId": "1",
+      "status": "Filled",
+      "byName": "Tariq Javed",
+      "at": "2026-11-15T07:55:00.000Z"
+    },
+    {
+      "id": "4",
+      "bookingId": "1",
+      "status": "Dispatched",
+      "byName": "Tariq Javed",
+      "at": "2026-11-15T08:05:00.000Z"
+    },
+    {
+      "id": "5",
+      "bookingId": "1",
+      "status": "Arrived",
+      "byName": "Naveed Akhtar",
+      "at": "2026-11-15T08:50:00.000Z"
+    },
+    {
+      "id": "6",
+      "bookingId": "1",
+      "status": "Delivered",
+      "byName": "Naveed Akhtar",
+      "at": "2026-11-15T09:10:00.000Z"
+    },
+    {
+      "id": "7",
+      "bookingId": "2",
+      "status": "Approved",
+      "byName": "Ayesha Siddiqui",
+      "at": "2026-11-18T16:05:00.000Z"
+    },
+    {
+      "id": "8",
+      "bookingId": "2",
+      "status": "Assigned",
+      "byName": "Asif Mehmood",
+      "at": "2026-11-19T09:00:00.000Z"
+    },
+    {
+      "id": "9",
+      "bookingId": "3",
+      "status": "Pending Approval",
+      "byName": "Ayesha Siddiqui",
+      "at": "2026-11-19T08:40:00.000Z"
+    }
+  ],
+  "subsidyApplications": [
+    {
+      "id": "1",
+      "customerId": "8",
+      "customerName": "Ayesha Siddiqui",
+      "category": "Low Income Household",
+      "proof": "BISP card no. 4471-2290",
+      "zoneId": "1",
+      "status": "Approved",
+      "createdAt": "2026-11-10T10:15:00.000Z"
+    }
+  ],
+  "disputes": []
+}
